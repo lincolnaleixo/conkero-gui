@@ -58,9 +58,7 @@
         <Col lg={12}>
           <div class="text-center mt-sm-5 mb-4 text-white-50">
             <div>
-              <Link href="/" class="d-inline-block auth-logo">
-                <h1 class="text-white">Conkero</h1>
-              </Link>
+              <h1 class="text-white">Conkero</h1>
             </div>
           </div>
         </Col>
@@ -90,7 +88,7 @@
                       Invalid credentials!
                     </p>{/if}
                   <div class="mb-3">
-                    <Label for="useremail" class="form-label"
+                    <Label for="email" class="form-label"
                       >Email <span class="text-danger">*</span></Label
                     >
                     <input

@@ -53,9 +53,7 @@
         <Col lg={12}>
           <div class="text-center mt-sm-5 mb-4 text-white-50">
             <div>
-              <Link href="index" class="d-inline-block auth-logo">
-                <h1 class="text-white">Conkero</h1>
-              </Link>
+              <h1 class="text-white">Conkero</h1>
             </div>
           </div>
         </Col>
@@ -78,7 +76,9 @@
                   on:input={validateMessageEmail}
                 >
                   <div class="mb-3">
-                    <Label for="username" class="form-label">Username</Label>
+                    <Label for="email" class="form-label"
+                      >Email <span class="text-danger">*</span></Label
+                    >
                     <input
                       type="email"
                       class="form-control"
@@ -89,12 +89,12 @@
 
                   <div class="mb-3">
                     <div class="float-end">
-                      <Link href="reset" class="text-muted"
+                      <Link href="forgot" class="text-muted"
                         >Forgot password?</Link
                       >
                     </div>
-                    <Label class="form-label" for="password-input"
-                      >Password</Label
+                    <Label for="password" class="form-label"
+                      >Password <span class="text-danger">*</span></Label
                     >
                     <div class="position-relative auth-pass-inputgroup mb-3">
                       <input
@@ -103,12 +103,6 @@
                         placeholder="Enter password"
                         id="password"
                       />
-                      <button
-                        class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
-                        type="button"
-                        id="password-addon"
-                        ><i class="ri-eye-fill align-middle" /></button
-                      >
                     </div>
                   </div>
 

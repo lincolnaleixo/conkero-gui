@@ -1,4 +1,4 @@
-export const { PORT, JWT_SECRET, MONGO_URI } = process.env
+export const { PORT, JWT_SECRET, MONGO_URI, GMAIL_USERNAME, GMAIL_PASS } = process.env
 if (!PORT) console.error('Error: PORT not set in .env')
 
 export const amz = {
@@ -15,6 +15,8 @@ export const amz = {
   SCOPE: '',
   TOKEN_URL: ''
 }
+
+export const RESET_WEBSITE_URL = 'http://localhost:3000/auth/reset'
 
 // const updateKeys = async () => {
 //   const client = new MongoClient(MONGO_URI)

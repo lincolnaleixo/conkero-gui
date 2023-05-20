@@ -1,5 +1,5 @@
 {
-  "name": "Conkero-interactive-svelte",
+  "name": "client",
   "version": "2.3.0",
   "scripts": {
     "dev": "svelte-kit dev",

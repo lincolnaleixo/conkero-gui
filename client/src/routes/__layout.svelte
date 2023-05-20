@@ -5,6 +5,7 @@
   const publicRoutes = [
     "/auth/login",
     "/auth/register",
+    "/auth/forgot",
     "/auth/reset",
     "/auth/logout",
     "/auth/successmessage",
