@@ -3,7 +3,7 @@ import { compare, hash } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 import { MongoClient } from 'mongodb'
 import { stringify } from 'qs'
-import User, { findOne } from '../models/user.js'
+import { User } from '../models/user.js'
 import { JWT_SECRET, MONGO_URI, amz } from '../services/config.js'
 
 export async function grant (req, res) {
@@ -80,7 +80,7 @@ export async function token (req, res) {
 export async function signup (req, res) {
   try {
     const data = await req.body
-    const userFromDb = await findOne({
+    const userFromDb = await User.findOne({
       email: data.email
     })
     if (userFromDb) {
@@ -110,7 +110,7 @@ export async function signup (req, res) {
 export async function login (req, res) {
   try {
     const data = await req.body
-    const user = await findOne({
+    const user = await User.findOne({
       email: data.email
     })
     if (!user) {
