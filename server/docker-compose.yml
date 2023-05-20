@@ -11,8 +11,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-    networks:
-      - conkero-network
   mongo-express:
     image: mongo-express:latest
     container_name: mongo-express
@@ -27,10 +25,5 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8081"
-    networks:
-      - conkero-network
 volumes:
   mongo-data:
-networks:
-  conkero-network:
-    external: true
