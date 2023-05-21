@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
+import { defineConfig } from 'vite'
 
 // //vitejs.dev/config/
 export default defineConfig({
   build: {
     polyfillDynamicImport: false,
-    cssCodeSplit: false,
+    cssCodeSplit: false
   },
   resolve: {
-    alias:{
-      '@' : path.resolve(__dirname, './src')
+    alias: {
+      '@': path.resolve(__dirname, './src')
     },
-    dedupe: ["svelte", "@fullcalendar/common",'svelte-apexcharts']
+    dedupe: ['svelte', '@fullcalendar/common', 'svelte-apexcharts']
   },
   plugins: [svelte({
     preprocess: sveltePreprocess()
@@ -21,4 +21,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ['svelte-apexcharts']
   }
-});
+})

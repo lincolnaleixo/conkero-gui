@@ -6,6 +6,7 @@ const token = null
 const { subscribe, set } = writable(token)
 
 const init = () => {
+  console.log('getting token')
   const x = Cookies.get('token')
   console.log('x', x)
   if (x) set(x)
@@ -17,6 +18,7 @@ const getToken = () => {
 }
 
 const storeToken = (t) => {
+  console.log('storing token', t)
   set(t)
   Cookies.set('token', t)
 }

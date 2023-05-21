@@ -1,3 +1,5 @@
+import { OAuthClient } from '@scaleleap/amazon-advertising-api-sdk'
+import { amazonMarketplaces, assertMarketplaceHasAdvertising } from '@scaleleap/amazon-marketplaces'
 import axios from 'axios'
 import bcrypt, { compare, hash } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
@@ -5,26 +7,32 @@ import { MongoClient } from 'mongodb'
 import { stringify } from 'qs'
 import { v4 as uuidv4 } from 'uuid'
 import { User } from '../models/user.js'
-import { JWT_SECRET, MONGO_URI, amz } from '../services/config.js'
+import { JWT_SECRET, MONGO_URI, adsConfig } from '../services/config.js'
 import mail from '../services/mail.js'
+
+assertMarketplaceHasAdvertising(amazonMarketplaces.US)
 
 export const grant = async (req, res) => {
   try {
-    console.log(amz)
+    const client = new OAuthClient({
+      clientId: adsConfig.CLIENT_ID,
+      clientSecret: adsConfig.CLIENT_SECRET,
+      redirectUri: adsConfig.REDIRECT_URI
+    }, amazonMarketplaces.US)
+
+    const uri = client.getUri()
+
     res.send({
       error: null,
-      data: {
-        url: `https://www.amazon.com/ap/oa?client_id=${amz.CLIENT_ID}&scope=${amz.PERMISSION_SCOPE}&response_type=code&redirect_uri=${amz.REDIRECT_URL}`
-      }
+      data: uri
     })
   } catch (error) {
     console.log('error while oauth')
     console.log(error.message)
-    return res.status(400)
-      .send({
-        error,
-        data: false
-      })
+    return res.send({
+      error,
+      data: false
+    })
   }
 }
 
@@ -34,13 +42,13 @@ export const token = async (req, res) => {
     const payload = stringify({
       grant_type: 'authorization_code',
       code,
-      redirect_uri: amz.REDIRECT_URL,
-      client_id: amz.CLIENT_ID,
-      client_secret: amz.CLIENT_SECRET
+      redirect_uri: adsConfig.REDIRECT_URL,
+      client_id: adsConfig.CLIENT_ID,
+      client_secret: adsConfig.CLIENT_SECRET
     })
     const reqConfig = {
       method: 'post',
-      url: amz.TOKEN_URL,
+      url: adsConfig.TOKEN_URL,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
@@ -63,19 +71,18 @@ export const token = async (req, res) => {
             }
           }
         )
-      amz.ACCESS_TOKEN = resData.access_token
-      amz.REFRESH_TOKEN = resData.refresh_token
+      adsConfig.ACCESS_TOKEN = resData.access_token
+      adsConfig.REFRESH_TOKEN = resData.refresh_token
       await client.close()
     }
     res.send({ data: 'Success', error: null })
   } catch (error) {
     console.log('error while getting tokens')
     console.log(error)
-    return res.status(400)
-      .send({
-        error,
-        data: false
-      })
+    return res.send({
+      error,
+      data: false
+    })
   }
 }
 
@@ -102,11 +109,10 @@ export const signup = async (req, res) => {
   } catch (error) {
     console.log('error while signup')
     console.log(error)
-    return res.status(400)
-      .send({
-        error: 'Unexpected error occured',
-        data: false
-      })
+    return res.send({
+      error: 'Unexpected error occured',
+      data: false
+    })
   }
 }
 
@@ -136,11 +142,10 @@ export const login = async (req, res) => {
   } catch (error) {
     console.log('error while login')
     console.log(error)
-    return res.status(400)
-      .send({
-        error: 'Unexpected error occured',
-        data: false
-      })
+    return res.send({
+      error: 'Unexpected error occured',
+      data: false
+    })
   }
 }
 

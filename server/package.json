@@ -12,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@scaleleap/amazon-advertising-api-sdk": "^3.8.3",
+    "@scaleleap/amazon-marketplaces": "^17.3.0",
+    "@scaleleap/selling-partner-api-sdk": "^6.12.1",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
