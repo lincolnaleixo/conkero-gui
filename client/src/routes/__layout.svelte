@@ -76,22 +76,22 @@
     initialLocale: "en",
   });
   onMount(() => {
-    if (browser) {
-      window.addEventListener("scroll", scrollNavigation, true);
-    }
+    // if (browser) {
+    //   window.addEventListener("scroll", scrollNavigation, true);
+    // }
     setTimeout(() => {
       document.getElementById("preloader").style.visibility = "hidden";
       document.getElementById("preloader").style.opacity = "0";
     }, 350);
   });
-  function scrollNavigation() {
-    var scrollup = document.documentElement.scrollTop;
-    if (scrollup > 50) {
-      headerClass = "topbar-shadow";
-    } else {
-      headerClass = "";
-    }
-  }
+  // function scrollNavigation() {
+  //   var scrollup = document.documentElement.scrollTop;
+  //   if (scrollup > 50) {
+  //     headerClass = "topbar-shadow";
+  //   } else {
+  //     headerClass = "";
+  //   }
+  // }
 </script>
 
 <svelte:head>
