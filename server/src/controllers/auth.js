@@ -1,11 +1,8 @@
-import axios from 'axios'
 import bcrypt, { compare, hash } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { MongoClient } from 'mongodb'
-import { stringify } from 'qs'
 import { v4 as uuidv4 } from 'uuid'
 import { User } from '../models/user.js'
-import { JWT_SECRET, MONGO_URI, adsConfig } from '../services/config.js'
+import { JWT_SECRET } from '../services/config.js'
 import mail from '../services/mail.js'
 
 

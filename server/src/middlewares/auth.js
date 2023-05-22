@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { ObjectId } from "mongodb";
 import { User } from "../models/user";
 import { JWT_SECRET } from "../services/config";
 
