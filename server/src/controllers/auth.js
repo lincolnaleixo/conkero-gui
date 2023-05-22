@@ -17,13 +17,14 @@ export const grant = async (req, res) => {
     const client = new OAuthClient({
       clientId: adsConfig.CLIENT_ID,
       clientSecret: adsConfig.CLIENT_SECRET,
-      redirectUri: adsConfig.REDIRECT_URI
+      redirectUri: adsConfig.REDIRECT_URI,
+      scopes: [adsConfig.PERMISSION_SCOPE]
     }, amazonMarketplaces.US)
 
     const uri = client.getUri()
 
     res.send({
-      error: null,
+      error: true,
       data: uri
     })
   } catch (error) {

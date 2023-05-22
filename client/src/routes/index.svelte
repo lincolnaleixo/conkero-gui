@@ -1,17 +1,15 @@
 <script>
-  // import token from "../store/token";
-  // export async function load({ session }) {
-  //   // Get the authenticated user from the current session
-  //   let { user } = session;
+  import { goto } from "$app/navigation";
+  import Cookies from "js-cookie";
+  import { onMount } from "svelte";
+  import token from "../store/token";
 
-  //   token.init();
+  onMount(() => {
+    const tokenCookie = Cookies.get("token");
 
-  //   // redirect the user to home page incase the user is not authenticated
-  //   if (user == null) {
-  //     return {
-  //       status: 302,
-  //       redirect: "/auth/register",
-  //     };
-  //   }
-  // }
+    if (tokenCookie) {
+      goto("/dashboard");
+      token.set(tokenCookie);
+    } else goto("/auth/register");
+  });
 </script>

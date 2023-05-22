@@ -5,8 +5,8 @@
 
   import { goto } from "$app/navigation";
   import axios from "axios";
+  import Cookies from "js-cookie";
   import { API_URL } from "../../../services/config";
-  import token from "../../../store/token";
 
   export let loading = false;
 
@@ -38,7 +38,7 @@
     console.log("response from signup", resData);
     loading = false;
     if (resData.error) return (error = resData.error);
-    token.storeToken(resData.data.token);
+    Cookies.set("token", resData.data.token);
     goto("/dashboard");
   };
 </script>

@@ -1,10 +1,4 @@
 <script>
-  import token from "../store/token";
-
-  export async function load({ session }) {
-    token.init();
-  }
-
   import { browser } from "$app/env";
   import { page } from "$app/stores";
   import { onMount } from "svelte";
@@ -13,6 +7,8 @@
     "/auth/register",
     "/auth/forgot",
     "/auth/reset",
+    "/auth/addAccount",
+    "/auth/redirect",
     "/auth/logout",
     "/auth/successmessage",
     "/auth/errors/auth-404-basic",
@@ -64,8 +60,7 @@
   <script src="//cdn.lordicon.com/xdjxvujz.js"></script>
   <script src="//unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
   <script
-    src="//cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"
-  ></script>
+    src="//cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 </svelte:head>
 <div id="preloader">
   <div id="status">
