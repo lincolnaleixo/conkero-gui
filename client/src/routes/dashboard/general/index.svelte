@@ -1,6 +1,7 @@
 <script>
-  import { Col, Container, Row } from "sveltestrap";
+  import { Container } from "sveltestrap";
   import { adsInit } from "../../../services/api";
+  import user from "../../../store/user";
 
   const handleAds = async () => {
     const response = await adsInit();
@@ -13,27 +14,42 @@
   <Container fluid>
     <div>
       <h3>Accounts</h3>
-      <Row>
-        <Col class="mt-2" xl={3} md={4}>
-          <button type="button" class="btn btn-primary btn-label rounded-pill"
-            ><i
-              class="ri-mail-line label-icon align-middle rounded-pill fs-16 me-2"
-            />
-            Selling Partner API (SP-API)</button
-          >
-        </Col>
-        <Col class="mt-2" xl={3} md={4}>
-          <button
-            on:click={handleAds}
-            type="button"
-            class="btn btn-primary btn-label rounded-pill"
-            ><i
-              class="ri-mail-line label-icon align-middle rounded-pill fs-16 me-2"
-            />
-            Advertising API (PPC)</button
-          >
-        </Col>
-      </Row>
+      <button
+        type="button"
+        disabled={$user.sp}
+        class={`btn m-1 ${
+          $user.sp ? "btn-outline-primary" : "btn-outline-dark"
+        } btn-label rounded-pill`}
+        >{#if $user.sp}
+          <i
+            class="ri-checkbox-circle-fill label-icon align-middle rounded-pill fs-2 me-2"
+          />
+        {:else}
+          <i
+            class="ri-add-fill label-icon align-middle rounded-pill fs-2 me-2"
+          />
+        {/if}
+        Selling Partner API (SP-API)</button
+      >
+      <button
+        disabled={$user.ads}
+        on:click={handleAds}
+        type="button"
+        class={`btn m-1 ${
+          $user.ads ? "btn-outline-primary" : "btn-outline-dark"
+        } btn-label rounded-pill`}
+      >
+        {#if $user.ads}
+          <i
+            class="ri-checkbox-circle-fill label-icon align-middle rounded-pill fs-2 me-2"
+          />
+        {:else}
+          <i
+            class="ri-add-fill label-icon align-middle rounded-pill fs-2 me-2"
+          />
+        {/if}
+        Advertising API (PPC)</button
+      >
     </div>
   </Container>
 </div>

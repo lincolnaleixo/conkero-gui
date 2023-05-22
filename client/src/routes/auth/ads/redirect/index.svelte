@@ -20,6 +20,7 @@
         $token
       );
       if (userResponse.error) return;
+      console.log("userResponse", userResponse);
       user.set(userResponse.data);
       goto("/dashboard");
     }

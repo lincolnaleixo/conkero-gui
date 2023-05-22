@@ -20,6 +20,9 @@ export const update = async (req, res) => {
         const user = await User.findByIdAndUpdate(req.user._id, body);
         console.log('user', user)
         if (!user) return res.send({ data: null, error: "No user found for this id" })
+        for (let key in body) {
+            user[key] = body[key];
+        }
         return res.send({ data: user, message: 'User updated!', error: null })
     } catch (error) {
         console.log('error while updating user')
