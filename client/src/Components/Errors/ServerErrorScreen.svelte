@@ -1,9 +1,8 @@
 <script>
   import Link from "svelte-link";
   import { Col, Container, Row } from "sveltestrap";
-
   // Import Images
-  import error500 from "../../../assets/images/error500.png";
+  import error500 from "../../assets/images/error500.png";
 </script>
 
 <svelte:head>
@@ -30,7 +29,7 @@
               Server Error 500. We're not exactly sure what happened, but our
               servers say something is wrong.
             </p>
-            <Link href="/dashboard" class="btn btn-info"
+            <Link href="/" class="btn btn-info"
               ><i class="mdi mdi-home me-1" />Back to home</Link
             >
           </div>

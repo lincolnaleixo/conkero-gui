@@ -1,23 +1,23 @@
 const c = [
 	() => import("../../src/routes/__layout.svelte"),
-	() => import("../runtime/components/error.svelte"),
+	() => import("../../src/routes/__error.svelte"),
 	() => import("../../src/routes/index.svelte"),
 	() => import("../../src/routes/dashboard/index.svelte"),
-	() => import("../../src/routes/dashboard/settings/index.svelte"),
+	() => import("../../src/routes/dashboard/general/index.svelte"),
 	() => import("../../src/routes/auth/index.svelte"),
 	() => import("../../src/routes/auth/successmessage/index.svelte"),
 	() => import("../../src/routes/auth/ParticlesAuth.svelte"),
 	() => import("../../src/routes/auth/AuthSlider.svelte"),
 	() => import("../../src/routes/auth/addAccount/index.svelte"),
-	() => import("../../src/routes/auth/redirect/index.svelte"),
 	() => import("../../src/routes/auth/register/index.svelte"),
-	() => import("../../src/routes/auth/errors/auth-offline.svelte"),
-	() => import("../../src/routes/auth/errors/auth-404.svelte"),
-	() => import("../../src/routes/auth/errors/auth-500.svelte"),
 	() => import("../../src/routes/auth/forgot/index.svelte"),
 	() => import("../../src/routes/auth/logout/index.svelte"),
 	() => import("../../src/routes/auth/login/index.svelte"),
-	() => import("../../src/routes/auth/reset/index.svelte")
+	() => import("../../src/routes/auth/reset/index.svelte"),
+	() => import("../../src/routes/auth/ads/index.svelte"),
+	() => import("../../src/routes/auth/ads/redirect/index.svelte"),
+	() => import("../../src/routes/auth/sp/index.svelte"),
+	() => import("../../src/routes/auth/sp/redirect/index.svelte")
 ];
 
 const d = decodeURIComponent;
@@ -29,8 +29,8 @@ export const routes = [
 	// src/routes/dashboard/index.svelte
 	[/^\/dashboard\/?$/, [c[0], c[3]], [c[1]]],
 
-	// src/routes/dashboard/settings/index.svelte
-	[/^\/dashboard\/settings\/?$/, [c[0], c[4]], [c[1]]],
+	// src/routes/dashboard/general/index.svelte
+	[/^\/dashboard\/general\/?$/, [c[0], c[4]], [c[1]]],
 
 	// src/routes/auth/index.svelte
 	[/^\/auth\/?$/, [c[0], c[5]], [c[1]]],
@@ -47,32 +47,32 @@ export const routes = [
 	// src/routes/auth/addAccount/index.svelte
 	[/^\/auth\/addAccount\/?$/, [c[0], c[9]], [c[1]]],
 
-	// src/routes/auth/redirect/index.svelte
-	[/^\/auth\/redirect\/?$/, [c[0], c[10]], [c[1]]],
-
 	// src/routes/auth/register/index.svelte
-	[/^\/auth\/register\/?$/, [c[0], c[11]], [c[1]]],
-
-	// src/routes/auth/errors/auth-offline.svelte
-	[/^\/auth\/errors\/auth-offline\/?$/, [c[0], c[12]], [c[1]]],
-
-	// src/routes/auth/errors/auth-404.svelte
-	[/^\/auth\/errors\/auth-404\/?$/, [c[0], c[13]], [c[1]]],
-
-	// src/routes/auth/errors/auth-500.svelte
-	[/^\/auth\/errors\/auth-500\/?$/, [c[0], c[14]], [c[1]]],
+	[/^\/auth\/register\/?$/, [c[0], c[10]], [c[1]]],
 
 	// src/routes/auth/forgot/index.svelte
-	[/^\/auth\/forgot\/?$/, [c[0], c[15]], [c[1]]],
+	[/^\/auth\/forgot\/?$/, [c[0], c[11]], [c[1]]],
 
 	// src/routes/auth/logout/index.svelte
-	[/^\/auth\/logout\/?$/, [c[0], c[16]], [c[1]]],
+	[/^\/auth\/logout\/?$/, [c[0], c[12]], [c[1]]],
 
 	// src/routes/auth/login/index.svelte
-	[/^\/auth\/login\/?$/, [c[0], c[17]], [c[1]]],
+	[/^\/auth\/login\/?$/, [c[0], c[13]], [c[1]]],
 
 	// src/routes/auth/reset/index.svelte
-	[/^\/auth\/reset\/?$/, [c[0], c[18]], [c[1]]]
+	[/^\/auth\/reset\/?$/, [c[0], c[14]], [c[1]]],
+
+	// src/routes/auth/ads/index.svelte
+	[/^\/auth\/ads\/?$/, [c[0], c[15]], [c[1]]],
+
+	// src/routes/auth/ads/redirect/index.svelte
+	[/^\/auth\/ads\/redirect\/?$/, [c[0], c[16]], [c[1]]],
+
+	// src/routes/auth/sp/index.svelte
+	[/^\/auth\/sp\/?$/, [c[0], c[17]], [c[1]]],
+
+	// src/routes/auth/sp/redirect/index.svelte
+	[/^\/auth\/sp\/redirect\/?$/, [c[0], c[18]], [c[1]]]
 ];
 
 // we import the root layout/error components eagerly, so that

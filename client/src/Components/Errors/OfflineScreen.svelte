@@ -1,5 +1,5 @@
 <script>
-  import { Col, Container, Row, Card, CardBody } from "sveltestrap";
+  import { Card, CardBody, Col, Container, Row } from "sveltestrap";
 </script>
 
 <svelte:head>

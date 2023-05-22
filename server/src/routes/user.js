@@ -1,9 +1,13 @@
 import { Router } from 'express'
-import { userWithToken } from '../controllers/user'
+import { update, userWithToken } from '../controllers/user'
 const router = Router()
 
 // get
 router.get('/token', userWithToken)
+
+
+// post
+router.post('/update', update)
 
 
 export default router

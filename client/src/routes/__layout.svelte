@@ -1,4 +1,8 @@
 <script>
+  import ErrorPage from "./__error.svelte";
+
+  let error = null;
+
   import { goto } from "$app/navigation";
   import Cookies from "js-cookie";
   import { onMount } from "svelte";
@@ -16,7 +20,8 @@
         if (
           window.location.href &&
           window.location.href.split("/")[3].length !== 0 &&
-          window.location.href.split("/")[3] !== "auth"
+          (window.location.href.split("/")[3] !== "auth" ||
+            window.location.href.includes("redirect"))
         ) {
           goto(window.location.href);
         } else {
@@ -24,6 +29,15 @@
         }
       }
     } else goto("/auth/register");
+  });
+
+  onMount(() => {
+    // Handle any uncaught errors
+    window.onerror = function (message, source, lineno, colno, error) {
+      // Set the error to be displayed
+      // You can customize this logic based on your requirements
+      error = true;
+    };
   });
 
   import { browser } from "$app/env";
@@ -35,12 +49,10 @@
     "/auth/forgot",
     "/auth/reset",
     "/auth/addAccount",
-    "/auth/redirect",
     "/auth/logout",
     "/auth/successmessage",
-    "/auth/errors/auth-404-basic",
-    "/auth/errors/auth-500",
-    "/auth/errors/auth-offline",
+    "/auth/sp/redirect",
+    "/auth/ads/redirect",
   ];
 
   $: isPublic = publicRoutes.includes($page.url.pathname);
@@ -96,19 +108,24 @@
     </div>
   </div>
 </div>
-{#if isPublic}
-  <slot />
-{:else}
-  <div id="layout-wrapper">
-    <Header {headerClass} />
-    <Sidebar {layoutType} />
-    <div class="main-content" id="maincontent">
-      <slot />
-      <Footer />
+
+{#key error}
+  {#if error}
+    <ErrorPage />
+  {:else if isPublic}
+    <slot />
+  {:else}
+    <div id="layout-wrapper">
+      <Header {headerClass} />
+      <Sidebar {layoutType} />
+      <div class="main-content" id="maincontent">
+        <slot />
+        <Footer />
+      </div>
+      <Rightbar bind:open {layoutType} />
     </div>
-    <Rightbar bind:open {layoutType} />
-  </div>
-{/if}
+  {/if}
+{/key}
 
 <style lang="scss" global>
   @import "../assets/scss/themes.scss";

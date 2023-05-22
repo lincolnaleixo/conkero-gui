@@ -44,7 +44,8 @@ export const spConfig = {
   "STS_TOKEN_EXPIRES_AT": "",
   "LWA_TOKEN_URL": "",
   "STS_TOKEN_URL": "",
-  "BASEURL": ""
+  "BASEURL": "",
+  "REDIRECT_URL": "",
 }
 
 export const RESET_WEBSITE_URL = 'http://localhost:3000/auth/reset'

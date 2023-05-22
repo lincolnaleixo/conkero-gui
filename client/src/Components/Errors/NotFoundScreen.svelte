@@ -1,8 +1,8 @@
 <script>
-  import error from "../../../assets/images/error.svg";
-  import { Col, Container, Row } from "sveltestrap";
   import Link from "svelte-link";
-  import ParticlesAuth from "../ParticlesAuth.svelte";
+  import { Col, Container, Row } from "sveltestrap";
+  import error from "../../assets/images/error.svg";
+  import ParticlesAuth from "../../routes/auth/ParticlesAuth.svelte";
 </script>
 
 <svelte:head>

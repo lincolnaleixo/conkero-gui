@@ -4,6 +4,7 @@ import './services/db.js'
 import cors from 'cors'
 import express from 'express'
 
+import ads from './routes/ads.js'
 import auth from './routes/auth.js'
 import sp from './routes/sp.js'
 import user from './routes/user.js'
@@ -19,6 +20,7 @@ app.use(express.json())
 
 app.use('/auth', auth)
 app.use('/sp', sp)
+app.use('/ads', ads)
 app.use('/user', authMiddleWare, user)
 
 app.listen(PORT, () => {

@@ -1,5 +1,3 @@
-import { OAuthClient } from '@scaleleap/amazon-advertising-api-sdk'
-import { amazonMarketplaces, assertMarketplaceHasAdvertising } from '@scaleleap/amazon-marketplaces'
 import axios from 'axios'
 import bcrypt, { compare, hash } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
@@ -10,82 +8,8 @@ import { User } from '../models/user.js'
 import { JWT_SECRET, MONGO_URI, adsConfig } from '../services/config.js'
 import mail from '../services/mail.js'
 
-assertMarketplaceHasAdvertising(amazonMarketplaces.US)
 
-export const grant = async (req, res) => {
-  try {
-    const client = new OAuthClient({
-      clientId: adsConfig.CLIENT_ID,
-      clientSecret: adsConfig.CLIENT_SECRET,
-      redirectUri: adsConfig.REDIRECT_URI,
-      scopes: [adsConfig.PERMISSION_SCOPE]
-    }, amazonMarketplaces.US)
 
-    const uri = client.getUri()
-
-    res.send({
-      error: true,
-      data: uri
-    })
-  } catch (error) {
-    console.log('error while oauth')
-    console.log(error.message)
-    return res.send({
-      error,
-      data: false
-    })
-  }
-}
-
-export const token = async (req, res) => {
-  try {
-    const { code } = req.body
-    const payload = stringify({
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: adsConfig.REDIRECT_URL,
-      client_id: adsConfig.CLIENT_ID,
-      client_secret: adsConfig.CLIENT_SECRET
-    })
-    const reqConfig = {
-      method: 'post',
-      url: adsConfig.TOKEN_URL,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data: payload
-    }
-    const response = await axios.request(reqConfig)
-    const resData = response.data
-    if (resData.token_type) {
-      const client = new MongoClient(MONGO_URI)
-      await client.connect()
-      await client
-        .db('conkero')
-        .collection('keys')
-        .updateOne(
-          { type: 'amazon' },
-          {
-            $set: {
-              ACCESS_TOKEN: resData.access_token,
-              REFRESH_TOKEN: resData.refresh_token
-            }
-          }
-        )
-      adsConfig.ACCESS_TOKEN = resData.access_token
-      adsConfig.REFRESH_TOKEN = resData.refresh_token
-      await client.close()
-    }
-    res.send({ data: 'Success', error: null })
-  } catch (error) {
-    console.log('error while getting tokens')
-    console.log(error)
-    return res.send({
-      error,
-      data: false
-    })
-  }
-}
 
 export const signup = async (req, res) => {
   try {
