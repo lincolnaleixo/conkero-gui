@@ -6,7 +6,9 @@ const user = new mongoose.Schema(
     password: { type: String, required: true },
     token: { type: String, required: false },
     resetPasswordToken: { type: String, required: false },
-    resetPasswordExpires: { type: Number, required: false }
+    resetPasswordExpires: { type: Number, required: false },
+    sp: { type: String, required: false },
+    ads: { type: String, required: false }
   },
   { timestamps: true }
 )

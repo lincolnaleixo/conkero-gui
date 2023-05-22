@@ -7,6 +7,7 @@ import express from 'express'
 import { init } from './services/authWithPassport.js'
 
 import auth from './routes/auth.js'
+import sp from './routes/sp.js'
 
 import { PORT } from './services/config.js'
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', auth)
+app.use('/sp', sp)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
