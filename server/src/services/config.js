@@ -24,6 +24,7 @@ export const adsConfig = {
 }
 
 export const spConfig = {
+  "APP_ID": "",
   "CLIENT_ID": "",
   "CLIENT_SECRET": "",
   "REFRESH_TOKEN": "",

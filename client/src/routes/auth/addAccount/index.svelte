@@ -9,7 +9,7 @@
 
   const handleSubmit = async () => {
     loading = true;
-    const response = await axios.get(`${API_URL}/auth/grant`);
+    const response = await axios.get(`${API_URL}/sp/init`);
     const resData = response.data;
     console.log("resData", resData);
     loading = false;

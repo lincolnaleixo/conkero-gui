@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store'
 
-const accounts = []
+const user = {}
 
-const { subscribe, set } = writable(accounts)
+const { subscribe, set } = writable(user)
 
 const reset = () => {
   set(null)

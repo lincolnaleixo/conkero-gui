@@ -1,7 +1,34 @@
 <script>
+  import { goto } from "$app/navigation";
+  import Cookies from "js-cookie";
+  import { onMount } from "svelte";
+  import { getUserWithToken } from "../services/api";
+  import token from "../store/token";
+  import user from "../store/user";
+
+  onMount(async () => {
+    const tokenCookie = Cookies.get("token");
+    if (tokenCookie) {
+      token.set(tokenCookie);
+      const response = await getUserWithToken(tokenCookie);
+      if (!response.error) {
+        user.set(response.data);
+        if (
+          window.location.href &&
+          window.location.href.split("/")[3].length !== 0 &&
+          window.location.href.split("/")[3] !== "auth"
+        ) {
+          goto(window.location.href);
+        } else {
+          goto("/dashboard");
+        }
+      }
+    } else goto("/auth/register");
+  });
+
   import { browser } from "$app/env";
   import { page } from "$app/stores";
-  import { onMount } from "svelte";
+
   const publicRoutes = [
     "/auth/login",
     "/auth/register",
