@@ -8,7 +8,8 @@ export const userWithToken = async (req, res) => {
         console.log('error while getting user with token')
         console.log(error.message)
         return res.send({
-            error,
+            error: true,
+            message: 'Unexpected error occured',
             data: false
         })
     }
@@ -28,7 +29,8 @@ export const update = async (req, res) => {
         console.log('error while updating user')
         console.log(error.message)
         return res.send({
-            error,
+            error: true,
+            message: 'Unexpected error occured',
             data: false
         })
     }

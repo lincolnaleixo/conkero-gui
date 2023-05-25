@@ -33,7 +33,8 @@ export const signup = async (req, res) => {
     console.log('error while signup')
     console.log(error)
     return res.send({
-      error: 'Unexpected error occured',
+      error: true,
+      message: 'Unexpected error occured',
       data: false
     })
   }
@@ -48,11 +49,12 @@ export const login = async (req, res) => {
     if (!user) {
       return res.json({
         data: null,
-        error: 'No user found with this email'
+        message: 'No user with this email exists!',
+        error: true
       })
     }
     const valid = await compare(data.password, user.password)
-    if (!valid) return res.json({ data: null, error: 'Incorrect Password' })
+    if (!valid) return res.json({ data: null, message: 'Invalid email or password!', error: true })
     const token = sign(user.id, JWT_SECRET)
     user.token = token
     await user.save()
@@ -66,7 +68,8 @@ export const login = async (req, res) => {
     console.log('error while login')
     console.log(error)
     return res.send({
-      error: 'Unexpected error occured',
+      error: true,
+      message: 'Unexpected error occured',
       data: false
     })
   }

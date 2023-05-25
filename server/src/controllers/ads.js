@@ -26,8 +26,9 @@ export const init = async (req, res) => {
         console.log('error while oauth')
         console.log(error.message)
         return res.send({
-            error,
-            data: null
+            error: true,
+            message: 'Unexpected error occured',
+            data: false
         })
     }
 }
@@ -56,8 +57,9 @@ export const authorize = async (req, res) => {
         console.log('error while getting tokens')
         console.log(error)
         return res.send({
-            error,
-            data: null
+            error: true,
+            message: 'Unexpected error occured',
+            data: false
         })
     }
 }

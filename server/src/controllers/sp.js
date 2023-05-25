@@ -11,7 +11,8 @@ export const init = async (req, res) => {
         console.log('error while sp init')
         console.log(error.message)
         return res.send({
-            error,
+            error: true,
+            message: 'Unexpected error occured',
             data: false
         })
     }
