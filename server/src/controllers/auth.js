@@ -11,6 +11,7 @@ import mail from '../services/mail.js'
 export const signup = async (req, res) => {
   try {
     const data = await req.body
+    console.log('data', data)
     const userFromDb = await User.findOne({
       email: data.email
     })
