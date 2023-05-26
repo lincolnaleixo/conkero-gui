@@ -2,7 +2,6 @@ import { getUserWithToken } from './services/api';
 
 export const handle = async ({ event, resolve, }) => {
     const tokenFromCookies = event.cookies.get('token', { path: '/' });
-    console.log('token in handle hook', tokenFromCookies)
 
     if (!tokenFromCookies) {
         event.locals.user = {}
