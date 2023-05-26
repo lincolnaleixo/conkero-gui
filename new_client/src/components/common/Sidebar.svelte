@@ -30,6 +30,20 @@
           </li>
         </ul>
       </li>
+
+      <li class="nav-item mt-4">
+        <Link href="/dashboard/logout">
+          <span class="icon">
+            <i class="ri-logout-circle-r-line" style="color: red;" />
+          </span>
+          <span class="text" style="color: red;">Logout</span>
+        </Link>
+        <!-- <ul id="ddmenu_1" class="collapse show dropdown-nav">
+          <li>
+            <Link href="/dashboard/general" class="active">General</Link>
+          </li>
+        </ul> -->
+      </li>
     </ul>
   </nav>
 </aside>
