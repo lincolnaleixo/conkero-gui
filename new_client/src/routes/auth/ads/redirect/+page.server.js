@@ -25,7 +25,7 @@ export const load = async ({ url, cookies }) => {
             );
             if (userResponse.error) return;
             console.log('final user updatee', userResponse)
-            toast.push("Added Advertising API Successfully!");
+            toast.push("Added Advertising API Successfully!", { classes: ['info'], duration: 3000, });
             throw redirect(302, '/dashboard');
         }
     }
