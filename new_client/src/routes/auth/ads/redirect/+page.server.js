@@ -5,13 +5,17 @@ import { authorizeAds, getUserWithToken, updateUser } from '../../../../services
 export const load = async ({ url, cookies }) => {
     const urlParams = new URLSearchParams(url.searchParams);
     const code = urlParams.get("code");
-    const tokenFromCookies = cookies.get('token');
+    console.log('code', code)
+    const tokenFromCookies = cookies.get('token')
+    console.log('tokenFromCookies', tokenFromCookies)
     if (tokenFromCookies) {
         const response = await getUserWithToken(tokenFromCookies);
+        console.log('user response', response)
         if (response.error) throw error(500, "Internal Server Error")
         const userFromDB = response.data;
         if (code && userFromDB._id) {
             const adsResponse = await authorizeAds({ code, userId: userFromDB._id });
+            console.log('adsResponse', adsResponse)
             if (adsResponse.error) return;
             const userResponse = await updateUser(
                 {
@@ -20,6 +24,7 @@ export const load = async ({ url, cookies }) => {
                 tokenFromCookies
             );
             if (userResponse.error) return;
+            console.log('final user updatee', userResponse)
             toast.push("Added Advertising API Successfully!");
             throw redirect(302, '/dashboard');
         }

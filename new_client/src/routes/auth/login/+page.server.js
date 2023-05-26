@@ -12,7 +12,7 @@ export const load = async ({ cookies, url }) => {
 }
 
 export const actions = {
-    default: async ({ cookies, request, invalid }) => {
+    default: async ({ cookies, request, locals }) => {
         const data = await request.formData();
         const email = data.get('email');
         const password = data.get('password');
@@ -20,13 +20,12 @@ export const actions = {
 
         const response = await axios.post(`${API_URL}/auth/login`, payload);
         const resData = response.data;
+        console.log('resData', resData)
         if (resData.error) return fail(400, { message: resData.message, error: true })
         cookies.set("token", resData.data.token, {
             path: '/',
-            httpOnly: true,
-            sameSite: 'strict',
-            secure: process.env.NODE_ENV === 'production',
-            maxAge: 60 * 60 * 24 * 30,
+            // sameSite: 'strict',
+            // secure: process.env.NODE_ENV === 'production',
         });
         throw redirect(302, '/')
     }

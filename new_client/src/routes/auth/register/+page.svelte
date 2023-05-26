@@ -139,10 +139,10 @@
                 {error}
               </div>
             {/if}
-            {#if form?.missing}<p class="error">
-                The email field is required
-              </p>{/if}
-            {#if form?.incorrect}<p class="error">Invalid credentials!</p>{/if}
+            {#if form?.error}
+              <div class="mt-2" style="color: red;">
+                {form?.message}
+              </div>{/if}
           </form>
 
           <div class="mt-4 text-center">

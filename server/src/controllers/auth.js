@@ -18,7 +18,8 @@ export const signup = async (req, res) => {
     if (userFromDb) {
       return res.json({
         data: null,
-        error: 'User with this email already exists'
+        error: true,
+        message: 'User with this email already exists!'
       })
     }
     const user = new User(data)
