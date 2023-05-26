@@ -1,5 +1,10 @@
 <script>
   import Link from "svelte-link";
+
+  export let settings = false;
+  const handleSettingsClick = () => {
+    settings = !settings;
+  };
 </script>
 
 <aside class="sidebar-nav-wrapper">
@@ -10,13 +15,14 @@
   </div>
   <nav class="sidebar-nav">
     <ul>
-      <li class="nav-item nav-item-has-children">
+      <li class="nav-item {settings ? 'nav-item-has-children' : ''}">
         <a
+          on:click|preventDefault={handleSettingsClick}
           href="#0"
           data-bs-toggle="collapse"
           data-bs-target="#ddmenu_1"
           aria-controls="ddmenu_1"
-          aria-expanded="false"
+          aria-expanded={settings ? "true" : "false"}
           aria-label="Toggle navigation"
         >
           <span class="icon">
@@ -24,7 +30,10 @@
           </span>
           <span class="text">Settings</span>
         </a>
-        <ul id="ddmenu_1" class="collapse show dropdown-nav">
+        <ul
+          id="ddmenu_1"
+          class="collapse {settings ? 'show' : ''} dropdown-nav"
+        >
           <li>
             <Link href="/dashboard/general" class="active">General</Link>
           </li>
@@ -38,11 +47,6 @@
           </span>
           <span class="text" style="color: red;">Logout</span>
         </Link>
-        <!-- <ul id="ddmenu_1" class="collapse show dropdown-nav">
-          <li>
-            <Link href="/dashboard/general" class="active">General</Link>
-          </li>
-        </ul> -->
       </li>
     </ul>
   </nav>
