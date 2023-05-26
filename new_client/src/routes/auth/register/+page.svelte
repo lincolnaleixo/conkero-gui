@@ -48,8 +48,8 @@
   <title>Sign Up | Conkero</title>
 </svelte:head>
 
-<div class="container-fluid">
-  <div class="row g-0 auth-row">
+<div class="container-fluid vh-100">
+  <div class="row g-0 auth-row vh-100">
     <div class="col-lg-5">
       <div class="auth-cover-wrapper bg-primary-100">
         <div class="auth-cover">
