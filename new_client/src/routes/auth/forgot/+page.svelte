@@ -46,7 +46,7 @@
             </p> -->
           </div>
           <div class="cover-image">
-            <img src="/images/auth/signin-image.svg" alt="" />
+            <img src="/images/auth/reset-password.svg" alt="" />
           </div>
           <div class="shape-image">
             <img src="/images/auth/shape.svg" alt="" />
