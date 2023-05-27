@@ -36,7 +36,7 @@ export const authorize = async (req, res) => {
         await spUser.save();
         res.send({ data: spUser, message: 'Selling Partner account added!', error: false })
     } catch (error) {
-        console.log('error while sp init')
+        console.log('error while sp authorize', error)
         console.log(error.message)
         return res.send({
             error: true,

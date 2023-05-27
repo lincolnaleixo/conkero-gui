@@ -28,6 +28,6 @@ export const actions = {
         if (userResponse.error) return fail(400, { message: userResponse.message, error: true });
         locals.user = userResponse.data
         toast.push(authorizeResponse.message)
-        throw redirect(302, '/')
+        throw redirect(302, '/dashboard/general')
     }
 }
