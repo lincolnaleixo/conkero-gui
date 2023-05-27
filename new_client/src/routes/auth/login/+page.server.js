@@ -22,6 +22,7 @@ export const actions = {
         const resData = response.data;
         console.log('resData', resData)
         if (resData.error) return fail(400, { message: resData.message, error: true })
+        locals.token = resData.data.token
         cookies.set("token", resData.data.token, {
             path: '/',
             // sameSite: 'strict',

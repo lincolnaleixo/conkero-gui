@@ -1,9 +1,12 @@
 import { Router } from 'express'
-import { init } from '../controllers/sp'
+import { authorize, init } from '../controllers/sp'
 const router = Router()
 
 // get
 router.get('/init', init)
+
+// post
+router.post('/authorize', authorize)
 
 
 

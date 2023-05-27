@@ -46,6 +46,7 @@ export const spConfig = {
   "STS_TOKEN_URL": "",
   "BASEURL": "",
   "REDIRECT_URL": "",
+  "ROLE_ARN": ""
 }
 
 export const RESET_WEBSITE_URL = 'http://localhost:3000/auth/reset'

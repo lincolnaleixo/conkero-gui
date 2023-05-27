@@ -27,7 +27,7 @@ export const init = async (req, res) => {
         console.log(error.message)
         return res.send({
             error: true,
-            message: 'Unexpected error occured',
+            message: 'An unexpected error occured!',
             data: false
         })
     }
@@ -58,7 +58,7 @@ export const authorize = async (req, res) => {
         console.log(error)
         return res.send({
             error: true,
-            message: 'Unexpected error occured',
+            message: 'An unexpected error occured!',
             data: false
         })
     }

@@ -1,18 +1,27 @@
 <script>
+  import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { adsInit } from "../../../services/api";
 
   export let user = $page.data.user;
+  export let token = $page.data.token;
 
   const handleAds = async () => {
-    const response = await adsInit();
+    console.log("user", user);
+    const response = await adsInit(token);
+    console.log("adsInit", response);
     if (!response.error) window.location.href = response.data;
+  };
+
+  const handleSp = async () => {
+    goto("/dashboard/sp");
   };
 </script>
 
 <div class="container-fluid py-5">
   <h2 class="mb-2">Accounts</h2>
   <button
+    on:click={handleSp}
     type="button"
     disabled={user.sp}
     class={`btn ${

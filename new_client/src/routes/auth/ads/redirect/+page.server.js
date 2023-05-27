@@ -14,7 +14,7 @@ export const load = async ({ url, cookies }) => {
         if (response.error) throw error(500, "Internal Server Error")
         const userFromDB = response.data;
         if (code && userFromDB._id) {
-            const adsResponse = await authorizeAds({ code, userId: userFromDB._id });
+            const adsResponse = await authorizeAds({ code, userId: userFromDB._id }, tokenFromCookies);
             console.log('adsResponse', adsResponse)
             if (adsResponse.error) return;
             const userResponse = await updateUser(

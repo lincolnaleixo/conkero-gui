@@ -1,4 +1,9 @@
+import axios from "axios"
 import { spConfig } from "../services/config"
+
+import { SellersApiClient } from '@scaleleap/selling-partner-api-sdk'
+import { SpUser } from "../models/spUser"
+
 
 export const init = async (req, res) => {
     try {
@@ -12,7 +17,30 @@ export const init = async (req, res) => {
         console.log(error.message)
         return res.send({
             error: true,
-            message: 'Unexpected error occured',
+            message: 'An unexpected error occured!',
+            data: false
+        })
+    }
+}
+
+
+export const authorize = async (req, res) => {
+    try {
+        const data = req.body;
+        const { userId, clientId, clientSecret, refreshToken } = data;
+        const payload = { grant_type: 'refresh_token', refresh_token: refreshToken, client_id: clientId, client_secret: clientSecret }
+        const response = await axios.post(spConfig.LWA_TOKEN_URL, payload);
+        const resData = response.data;
+        if (resData.error) return res.send({ data: null, error: null, message: resData.error_description });
+        const spUser = new SpUser({ userId, clientId, clientSecret, refreshToken })
+        await spUser.save();
+        res.send({ data: spUser, message: 'Selling Partner account added!', error: false })
+    } catch (error) {
+        console.log('error while sp init')
+        console.log(error.message)
+        return res.send({
+            error: true,
+            message: 'An unexpected error occured!',
             data: false
         })
     }

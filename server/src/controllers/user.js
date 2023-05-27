@@ -9,7 +9,7 @@ export const userWithToken = async (req, res) => {
         console.log(error.message)
         return res.send({
             error: true,
-            message: 'Unexpected error occured',
+            message: 'An unexpected error occured!',
             data: false
         })
     }
@@ -30,7 +30,7 @@ export const update = async (req, res) => {
         console.log(error.message)
         return res.send({
             error: true,
-            message: 'Unexpected error occured',
+            message: 'An unexpected error occured!',
             data: false
         })
     }

@@ -19,8 +19,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/auth', auth)
-app.use('/sp', sp)
-app.use('/ads', ads)
+app.use('/sp', authMiddleWare, sp)
+app.use('/ads', authMiddleWare, ads)
 app.use('/user', authMiddleWare, user)
 
 app.listen(PORT, () => {

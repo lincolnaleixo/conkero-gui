@@ -35,7 +35,7 @@ export const signup = async (req, res) => {
     console.log(error)
     return res.send({
       error: true,
-      message: 'Unexpected error occured',
+      message: 'An unexpected error occured!',
       data: false
     })
   }
@@ -70,7 +70,7 @@ export const login = async (req, res) => {
     console.log(error)
     return res.send({
       error: true,
-      message: 'Unexpected error occured',
+      message: 'An unexpected error occured!',
       data: false
     })
   }
