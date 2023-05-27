@@ -56,6 +56,13 @@ export const authorize = async (req, res) => {
     } catch (error) {
         console.log('error while getting tokens')
         console.log(error)
+        if (error.response) {
+            return res.send({
+                error: true,
+                message: error.response.data.error_description,
+                data: false
+            })
+        }
         return res.send({
             error: true,
             message: 'An unexpected error occured!',

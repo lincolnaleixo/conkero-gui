@@ -15,6 +15,13 @@ export const init = async (req, res) => {
     } catch (error) {
         console.log('error while sp init')
         console.log(error.message)
+        if (error.response) {
+            return res.send({
+                error: true,
+                message: error.response.data.error_description,
+                data: false
+            })
+        }
         return res.send({
             error: true,
             message: 'An unexpected error occured!',
@@ -36,8 +43,16 @@ export const authorize = async (req, res) => {
         await spUser.save();
         res.send({ data: spUser, message: 'Selling Partner account added!', error: false })
     } catch (error) {
+        console.log(error.response)
+        if (error.response) {
+            console.log('error while sp authorize', error.response.data)
+            return res.send({
+                error: true,
+                message: error.response.data.error_description,
+                data: false
+            })
+        }
         console.log('error while sp authorize', error)
-        console.log(error.message)
         return res.send({
             error: true,
             message: 'An unexpected error occured!',

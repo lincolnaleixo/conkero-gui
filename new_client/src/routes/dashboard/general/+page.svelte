@@ -1,10 +1,16 @@
 <script>
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
   import { adsInit } from "../../../services/api";
 
   export let user = $page.data.user;
   export let token = $page.data.token;
+
+  onMount(() => {
+    console.log("user", user);
+    console.log("token", token);
+  });
 
   const handleAds = async () => {
     console.log("user", user);

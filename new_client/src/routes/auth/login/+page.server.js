@@ -25,9 +25,8 @@ export const actions = {
         locals.token = resData.data.token
         cookies.set("token", resData.data.token, {
             path: '/',
-            // sameSite: 'strict',
-            // secure: process.env.NODE_ENV === 'production',
-            secure: false,
+            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production',
             maxAge: 60 * 60 * 24 * 30,
         });
         throw redirect(302, '/')
