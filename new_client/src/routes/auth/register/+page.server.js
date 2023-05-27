@@ -26,6 +26,7 @@ export const actions = {
             path: '/',
             // sameSite: 'strict',
             // secure: process.env.NODE_ENV === 'production',
+            secure: false,
             maxAge: 60 * 60 * 24 * 30,
         });
         throw redirect(302, '/')
