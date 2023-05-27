@@ -6,7 +6,7 @@ export const load = async ({ url, cookies }) => {
     const urlParams = new URLSearchParams(url.searchParams);
     const code = urlParams.get("code");
     console.log('code', code)
-    const tokenFromCookies = cookies.get('token')
+    const tokenFromCookies = cookies.get('token', { path: '/' })
     console.log('tokenFromCookies', tokenFromCookies)
     if (tokenFromCookies) {
         const response = await getUserWithToken(tokenFromCookies);
