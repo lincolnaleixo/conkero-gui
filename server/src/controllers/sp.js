@@ -34,6 +34,7 @@ export const init = async (req, res) => {
 export const authorize = async (req, res) => {
     try {
         const data = req.body;
+        console.log('req body', data)
         const { userId, clientId, clientSecret, refreshToken } = data;
         const payload = { grant_type: 'refresh_token', refresh_token: refreshToken, client_id: clientId, client_secret: clientSecret }
         const response = await axios.post(spConfig.LWA_TOKEN_URL, payload);
